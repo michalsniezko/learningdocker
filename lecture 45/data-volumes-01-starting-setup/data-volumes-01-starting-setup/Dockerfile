@@ -12,11 +12,11 @@ COPY . .
 # overwriting the node_modules folder that was created during npm install in the Dockerfile. 
 # Simply add an anonymous volume to node_modules to preserve it.
 
-# Adding a protection layer for node_modules
+# Adding a protection layer for node_modules (anonymous volume)
 VOLUME [ "/app/node_modules" ]
 
 EXPOSE 80
 
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
 
-# docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v ${PWD}:/app feedback-node:volumes
+# docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v /app/temp -v ${PWD}:/app:ro feedback-node:volumes 
