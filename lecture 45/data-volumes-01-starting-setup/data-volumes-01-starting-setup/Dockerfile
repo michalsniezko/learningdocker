@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+ENV PORT=80
+
 # The volume -v ${PWD}:/app mounts your current directory in /app,
 # overwriting the node_modules folder that was created during npm install in the Dockerfile. 
 # Simply add an anonymous volume to node_modules to preserve it.
@@ -15,7 +17,7 @@ COPY . .
 # Adding a protection layer for node_modules (anonymous volume)
 VOLUME [ "/app/node_modules" ]
 
-EXPOSE 80
+EXPOSE $PORT
 
 CMD ["npm", "start"]
 
