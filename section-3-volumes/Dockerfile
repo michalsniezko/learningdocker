@@ -8,7 +8,9 @@ RUN npm install
 
 COPY . .
 
-ENV PORT=80
+ARG DEFAULT_PORT=80
+
+ENV PORT=$DEFAULT_PORT
 
 # The volume -v ${PWD}:/app mounts your current directory in /app,
 # overwriting the node_modules folder that was created during npm install in the Dockerfile. 
