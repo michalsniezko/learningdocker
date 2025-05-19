@@ -1,0 +1,41 @@
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - data:/data/db
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: michal
+    #   MONGO_INITDB_ROOT_PASSWORD: secret
+    env_file:
+      - ./env/mongo.env
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      # args:
+        # some-arg: 1
+    ports:
+      - "80:80"
+    volumes:
+      - logs:/app/logs # named volume (musi być na dole)
+      - ./backend:/app # bind mount (nie moze byc na dole)
+      - /app/node_modules # anonymous volume (nie moze byc na dole)
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+volumes: # named volumes tutaj nie maja miec wartosci przypisanej - one sa deklaracja
+  data:
+  logs:
