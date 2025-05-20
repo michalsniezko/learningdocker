@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   server:
     # image: 'nginx:stable-alpine'
@@ -24,8 +22,6 @@ services:
     image: mysql:5.7
     env_file:
       - ./env/mysql.env
-
-# helper containers:
   composer:
     build:
       context: ./dockerfiles
