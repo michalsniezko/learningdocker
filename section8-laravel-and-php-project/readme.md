@@ -2,10 +2,10 @@
 https://www.udemy.com/course/docker-kubernetes-the-practical-guide/learn/lecture/22167198#questions/18527114
 
 # Build your project (delete any existing "src" directory)
-> docker compose run composer create-project --prefer-dist laravel/laravel .
+`docker compose run composer create-project --prefer-dist laravel/laravel .`
 
 # Start your project
-> docker compose up -d server php mysql
+`docker compose up -d server php mysql`
 
 # Edit your environment variables
 ```
@@ -19,14 +19,14 @@ DB_PASSWORD=secret
 # You must run the Artisan migration FIRST
 -- the default configuration now uses flatstorage (sqlite), and now we need to migrate the data to our SQL database
 
-> docker compose run artisan migrate
+`docker compose run artisan migrate`
 
 one more command to update the view's cache
 
-> docker compose run artisan view:cache
+`docker compose run artisan view:cache`
 
 and finally (new with Laravel 12), you MUST generate an encryption key
 
-> docker compose run artisan key:generate
+`docker compose run artisan key:generate`
 
 # You should now be able to view your project at http://localhost:8000
