@@ -1,4 +1,5 @@
 services:
+
   server:
     # image: 'nginx:stable-alpine'
     build:
@@ -12,7 +13,7 @@ services:
     depends_on:
       - php
       - mysql
-      
+
   php:
     build:
       context: .
