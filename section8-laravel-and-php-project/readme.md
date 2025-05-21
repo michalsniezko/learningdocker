@@ -1,7 +1,9 @@
 ## To jest stan projektu po wykonaniu wszystkich czynnosci z komentarza
 https://www.udemy.com/course/docker-kubernetes-the-practical-guide/learn/lecture/22167198#questions/18527114
 
-# Build your project (delete any existing "src" directory)
+# Build your project
+ (delete any existing "src" directory)
+ 
 `docker compose run composer create-project --prefer-dist laravel/laravel .`
 
 # Start your project
