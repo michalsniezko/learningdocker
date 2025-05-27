@@ -1,0 +1,23 @@
+### Container that builds and serves compiled files.
+
+### STAGE 1: BUILD
+FROM node:14-alpine AS buildstage
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+### STAGE 2: SERVE
+RUN npm run build
+
+FROM nginx:stable-alpine
+
+COPY --from=buildstage /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD [ "nginx", "-g", "daemon off;" ]

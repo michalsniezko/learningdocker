@@ -4,6 +4,9 @@ import GoalInput from './components/goals/GoalInput';
 import CourseGoals from './components/goals/CourseGoals';
 import ErrorAlert from './components/UI/ErrorAlert';
 
+//DEVELOPMENT if we use npm start vs PRODUCTION if we use npm run build
+const backendUrl = process.env.NODE_ENV === 'development' ? 'http://localhost' : 'http://lb-for-docker-course-859752468.eu-central-1.elb.amazonaws.com';
+
 function App() {
   const [loadedGoals, setLoadedGoals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +17,7 @@ function App() {
       setIsLoading(true);
 
       try {
-        const response = await fetch('http://localhost/goals');
+        const response = await fetch(backendUrl + '/goals');
 
         const resData = await response.json();
 
@@ -39,7 +42,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost/goals', {
+      const response = await fetch(backendUrl + '/goals', {
         method: 'POST',
         body: JSON.stringify({
           text: goalText,
@@ -78,7 +81,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost/goals/' + goalId, {
+      const response = await fetch(backendUrl + '/goals/' + goalId, {
         method: 'DELETE',
       });
 
